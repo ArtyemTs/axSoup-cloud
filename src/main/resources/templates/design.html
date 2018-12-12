@@ -10,16 +10,14 @@
 <h1>Design your soup!</h1>
 <img th:src="@{/soup2.png}"/>
 <form method="POST" th:object="${design}">
-    <!-- end::all[] -->
 
     <span class="validationError"
           th:if="${#fields.hasErrors('ingredients')}"
           th:errors="*{ingredients}">Ingredient Error</span>
 
-    <!-- tag::all[] -->
+
     <div class="grid">
-        <!-- end::formTag[] -->
-        <!-- end::head[] -->
+
         <div class="ingredient-group" id="wraps">
             <!-- tag::designateWrap[] -->
             <h3>Designate your wrap:</h3>
@@ -27,7 +25,7 @@
                 <input name="ingredients" type="checkbox" th:value="${ingredient.id}" />
                 <span th:text="${ingredient.name}">INGREDIENT</span><br/>
             </div>
-            <!-- end::designateWrap[] -->
+
         </div>
 
         <div class="ingredient-group" id="proteins">

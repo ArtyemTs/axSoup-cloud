@@ -1,5 +1,6 @@
 package axsoup;
 
+import java.util.Date;
 import java.util.List;
 // end::allButValidation[]
         import javax.validation.constraints.NotNull;
@@ -9,6 +10,9 @@ import java.util.List;
 
 @Data
 public class Soup {
+    private Long id;
+    private Date createdAt;
+
     @NotNull
     @Size(min=5, message="Name must be at least 5 characters long")
     private String name;
