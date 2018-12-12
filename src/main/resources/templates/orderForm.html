@@ -2,12 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Ax Soup Cloud</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
 </head>
 <body>
 <form method="POST" th:action="@{/orders}" th:object="${order}">
     <h1>Order your soup creations!</h1>
     <img th:src="@{/soup2.png}"/>
+    <h3>Your tacos in this order:</h3>
     <a th:href="@{/design}" id="another">Design another taco</a><br/>
+
+    <ul>
+        <li th:each="soup : ${order.soup}"><span th:text="${soup.name}">soup name</span></li>
+    </ul>
 
     <div th:if="${#fields.hasErrors()}">
         <span class="validationError">
