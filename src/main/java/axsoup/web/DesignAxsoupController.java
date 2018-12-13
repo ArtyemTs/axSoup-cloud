@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import axsoup.Order;
-import axsoup.data.IngredientRepository;
-import axsoup.data.SoupRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import lombok.extern.slf4j.Slf4j;
+
+import axsoup.Order;
+import axsoup.data.IngredientRepository;
+import axsoup.data.SoupRepository;
 import axsoup.Soup;
 import axsoup.Ingredient;
 import axsoup.Ingredient.Type;
@@ -31,10 +33,13 @@ import javax.validation.Valid;
 public class DesignAxsoupController {
 
     private final IngredientRepository ingredientRepo;
+
     private SoupRepository designRepo;
 
     @Autowired
-    public DesignAxsoupController(IngredientRepository ingredientRepo, SoupRepository designRepo) {
+    public DesignAxsoupController(
+            IngredientRepository ingredientRepo,
+            SoupRepository designRepo) {
         this.ingredientRepo = ingredientRepo;
         this.designRepo = designRepo;
     }
@@ -43,6 +48,7 @@ public class DesignAxsoupController {
     public Order order() {
         return new Order();
     }
+
     @ModelAttribute(name = "soup")
     public Soup soup() {
         return new Soup();

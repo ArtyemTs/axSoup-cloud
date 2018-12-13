@@ -7,18 +7,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+
 import org.hibernate.validator.constraints.CreditCardNumber;
-import org.hibernate.validator.constraints.NotBlank;
-import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import lombok.Data;
 
 @Data
 @Entity
