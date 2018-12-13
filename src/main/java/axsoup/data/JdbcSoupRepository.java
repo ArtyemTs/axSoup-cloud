@@ -48,7 +48,7 @@ public class JdbcSoupRepository implements SoupRepository {
                                 new Timestamp(soup.getCreatedAt().getTime())));
         System.out.println(3);
         System.out.println(psc);
-        KeyHolder keyHolder = new GeneratedKeyHolder();
+        GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
         System.out.println(4);
 
         jdbc.update(psc, keyHolder);
