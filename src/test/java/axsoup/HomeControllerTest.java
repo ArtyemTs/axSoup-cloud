@@ -6,19 +6,33 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
+import axsoup.data.IngredientRepository;
+import axsoup.data.OrderRepository;
+import axsoup.data.SoupRepository;
+import axsoup.web.WebConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(HomeController.class)   // <1>
+@WebMvcTest(WebConfig.class)   // <1>
 public class HomeControllerTest {
 
     @Autowired
     private MockMvc mockMvc;   // <2>
+
+    @MockBean
+    private IngredientRepository ingredientRepository;
+
+    @MockBean
+    private SoupRepository designRepository;
+
+    @MockBean
+    private OrderRepository orderRepository;
 
     @Test
     public void testHomePage() throws Exception {
