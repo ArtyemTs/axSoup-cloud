@@ -6,9 +6,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-import axsoup.data.IngredientRepository;
-import axsoup.data.OrderRepository;
-import axsoup.data.SoupRepository;
 import axsoup.web.WebConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,12 +15,17 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import axsoup.data.SoupRepository;
+import axsoup.data.IngredientRepository;
+import axsoup.data.OrderRepository;
+
+
 @RunWith(SpringRunner.class)
-@WebMvcTest(WebConfig.class)   // <1>
+@WebMvcTest
 public class HomeControllerTest {
 
     @Autowired
-    private MockMvc mockMvc;   // <2>
+    private MockMvc mockMvc;
 
     @MockBean
     private IngredientRepository ingredientRepository;
@@ -36,14 +38,13 @@ public class HomeControllerTest {
 
     @Test
     public void testHomePage() throws Exception {
-        mockMvc.perform(get("/"))    // <3>
-
-                .andExpect(status().isOk())  // <4>
-
-                .andExpect(view().name("home"))  // <5>
-
-                .andExpect(content().string(           // <6>
+        mockMvc.perform(get("/"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("home"))
+                .andExpect(content().string(
                         containsString("Welcome to...")));
     }
 
 }
+
+
