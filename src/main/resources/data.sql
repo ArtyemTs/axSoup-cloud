@@ -2,6 +2,7 @@ delete from Soup_Order_Soups;
 delete from Soup_Ingredients;
 delete from Soup;
 delete from Soup_Order;
+
 delete from Ingredient;
 insert into Ingredient (id, name, type)
  values ('FLTO', 'Flour Tortilla', 'WRAP');
