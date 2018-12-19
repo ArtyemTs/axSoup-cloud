@@ -20,6 +20,7 @@ import axsoup.data.OrderRepository;
 @SessionAttributes("order")
 public class OrderController {
 
+    @Autowired
     private OrderRepository orderRepo;
 
     public OrderController(OrderRepository orderRepo) {
