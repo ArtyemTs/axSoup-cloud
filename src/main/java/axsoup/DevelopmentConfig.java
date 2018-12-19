@@ -9,7 +9,6 @@ import axsoup.Ingredient.Type;
 import axsoup.data.IngredientRepository;
 import axsoup.data.UserRepository;
 
-@Profile("!prod")
 @Configuration
 public class DevelopmentConfig {
 
