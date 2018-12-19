@@ -2,13 +2,7 @@ package axsoup;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.PrePersist;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -32,6 +26,9 @@ public class Order implements Serializable{
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private Date placedAt;
+
+    @ManyToOne
+    private User user;
 
     @NotBlank(message="Delivery name is required")
     private String deliveryName;
@@ -64,6 +61,7 @@ public class Order implements Serializable{
     public void addDesign(Soup design) {
         this.soups.add(design);
     }
+
 
     @PrePersist
     void placedAt() {
