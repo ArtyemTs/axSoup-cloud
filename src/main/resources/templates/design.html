@@ -10,6 +10,10 @@
 <h1>Design your soup!</h1>
 <img th:src="@{/soup2.png}"/>
 
+<form method="POST" th:action="@{/logout}">
+    <input type="submit" value="Logout"/>
+</form>
+
     <form method="POST" th:object="${soup}">
 
     <span class="validationError"

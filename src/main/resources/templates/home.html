@@ -7,6 +7,11 @@
 <body>
 <h1>Welcome to...</h1>
 <img th:src="@{soup2.png}"/>
+
+<form method="POST" th:action="@{/logout}">
+    <input type="submit" value="Logout"/>
+</form>
+
 <a th:href="@{/design}" id="design">Design a soup</a>
 </body>
 </html>
