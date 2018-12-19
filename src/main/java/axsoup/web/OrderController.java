@@ -2,8 +2,7 @@ package axsoup.web;
 
 import javax.validation.Valid;
 
-import axsoup.User;
-import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
@@ -14,9 +13,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import axsoup.Order;
+import axsoup.User;
 import axsoup.data.OrderRepository;
 
-@Slf4j
 @Controller
 @RequestMapping("/orders")
 @SessionAttributes("order")
@@ -29,7 +28,7 @@ public class OrderController {
     }
 
     @GetMapping("/current")
-    public String orderForm() {
+    public String orderForm(@AuthenticationPrincipal User user) {
         return "orderForm";
     }
 
@@ -39,6 +38,9 @@ public class OrderController {
         if (errors.hasErrors()) {
             return "orderForm";
         }
+
+        order.setUser(user);
+
         orderRepo.save(order);
         sessionStatus.setComplete();
         return "redirect:/";
