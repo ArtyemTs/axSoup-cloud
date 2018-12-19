@@ -14,7 +14,7 @@
     <input type="submit" value="Logout"/>
 </form>
 
-    <form method="POST" th:object="${soup}">
+    <form method="POST" th:object="${soup}" th:action="@{/design}">
 
     <span class="validationError"
           th:if="${#fields.hasErrors('ingredients')}"
