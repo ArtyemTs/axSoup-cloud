@@ -1,12 +1,12 @@
 #spring:
 #  security:
 #    user:
-#      name: buzz
-#      password: infinity
+#      name: art
+#      password: 123
 
-#axsoup:
-#orders:
-#pageSize: 10
+axsoup:
+  orders:
+    pageSize: 10
 #
 #
 #discount:

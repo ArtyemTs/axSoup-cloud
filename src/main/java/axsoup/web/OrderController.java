@@ -34,7 +34,7 @@ public class OrderController {
         this.pageSize = pageSize;
     }
 
-@Autowired
+    @Autowired
     private OrderRepository orderRepo;
 
     private UserRepository userRepo;
@@ -64,13 +64,14 @@ public class OrderController {
         sessionStatus.setComplete();
         return "redirect:/";
     }
+
+    // Ограничиваем кол-во выводимых заказов
     @GetMapping
     public String ordersForUser(
             @AuthenticationPrincipal User user, Model model) {
-        // Ограничиваем кол-во выводимых заказов
-        Pageable pageable = PageRequest.of(0, 20);
+        Pageable pageable = PageRequest.of(0, pageSize);
         model.addAttribute("orders",
-                orderRepo.findByUserOrderByPlacedAtDesc(user));
+                orderRepo.findByUserOrderByPlacedAtDesc(user, pageable));
         return "orderList";
     }
 
