@@ -26,22 +26,26 @@ import java.security.Principal;
 @Controller
 @RequestMapping("/orders")
 @SessionAttributes("order")
-@ConfigurationProperties(prefix="axsoup.orders")
+
 public class OrderController {
 
-    private int pageSize = 20;
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
-    }
+//    private int pageSize = 20;
+//    public void setPageSize(int pageSize) {
+//        this.pageSize = pageSize;
+//    }
 
     @Autowired
     private OrderRepository orderRepo;
 
     private UserRepository userRepo;
 
-    public OrderController(OrderRepository orderRepo, UserRepository userRepo) {
+    private OrderProps props;
+
+    public OrderController(OrderRepository orderRepo, UserRepository userRepo, OrderProps props) {
         this.orderRepo = orderRepo;
         this.userRepo = userRepo;
+        this.props = props;
+
     }
 
     @GetMapping("/current")
@@ -69,7 +73,7 @@ public class OrderController {
     @GetMapping
     public String ordersForUser(
             @AuthenticationPrincipal User user, Model model) {
-        Pageable pageable = PageRequest.of(0, pageSize);
+        Pageable pageable = PageRequest.of(0, props.getPageSize());
         model.addAttribute("orders",
                 orderRepo.findByUserOrderByPlacedAtDesc(user, pageable));
         return "orderList";
