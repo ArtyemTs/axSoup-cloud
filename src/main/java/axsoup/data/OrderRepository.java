@@ -1,6 +1,7 @@
 package axsoup.data;
 
 import axsoup.User;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import axsoup.Order;
@@ -10,7 +11,7 @@ import java.util.List;
 
 public interface OrderRepository extends CrudRepository<Order, Long> {
 
-    List<Order> findByUserOrderByPlacedAtDesc(User user);
+    List<Order> findByUserOrderByPlacedAtDesc(User user, Pageable pageable);
 
 //    List<Order> findByDeliveryZip(String deliveryZip);
 //
