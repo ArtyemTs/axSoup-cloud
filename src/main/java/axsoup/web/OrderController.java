@@ -2,9 +2,11 @@ package axsoup.web;
 
 import javax.validation.Valid;
 
-
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import axsoup.data.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -59,6 +61,8 @@ public class OrderController {
     @GetMapping
     public String ordersForUser(
             @AuthenticationPrincipal User user, Model model) {
+        // Ограничиваем кол-во выводимых заказов
+        Pageable pageable = PageRequest.of(0, 20);
         model.addAttribute("orders",
                 orderRepo.findByUserOrderByPlacedAtDesc(user));
         return "orderList";
