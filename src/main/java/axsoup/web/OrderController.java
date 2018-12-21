@@ -34,16 +34,16 @@ public class OrderController {
 //        this.pageSize = pageSize;
 //    }
 
-    @Autowired
+//    @Autowired
     private OrderRepository orderRepo;
 
-    private UserRepository userRepo;
+//    private UserRepository userRepo;
 
     private OrderProps props;
 
     public OrderController(OrderRepository orderRepo, UserRepository userRepo, OrderProps props) {
         this.orderRepo = orderRepo;
-        this.userRepo = userRepo;
+//        this.userRepo = userRepo;
         this.props = props;
 
     }
@@ -55,13 +55,14 @@ public class OrderController {
 
     @PostMapping
     public String processOrder(@Valid Order order, Errors errors, SessionStatus sessionStatus,
-                               Principal principal) {
+//                               Principal principal)
+                               @AuthenticationPrincipal User user){
         if (errors.hasErrors()) {
             return "orderForm";
         }
 
-        User user = userRepo.findByUsername(
-                principal.getName());
+//        User user = userRepo.findByUsername(
+//                principal.getName());
         order.setUser(user);
 
         orderRepo.save(order);
